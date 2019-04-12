@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head lang="zh-CN">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>监控</title>
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/style.css">
+
+  <!-- 引入jquery.min.js -->
+  <script type="text/javascript" src="js/jquery.1.4.2-min.js"></script>
+
+
+  <!-- 引入 echarts.js -->
+  <script src="./js/echarts.js"></script>
+
+  <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body style="background-color: #e6eaed">
+  <!-- logo -->
+  <div class="container-fluid header lf">
+    <div class="container">
+      <div class="row">
+        <img src="images/980.png" alt="">
+        <span>生态环境修复数据监测平台</span>
+      </div>
+    </div>
+  </div>
+  <!-- nav -->
+  <!-- <div class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        Brand and toggle get grouped for better mobile display
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+          <a class="navbar-brand" href="#">Brand</a>
+        </div>
+  
+        Collect the nav links, forms, and other content for toggling
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+  
+            <li><a href="#">首页</a></li>
+            <li><a href="#">运行监控</a></li>
+            <li class="active"><a href="#">数据管理 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">服务管理</a></li>
+            <li><a href="#">配置管理</a></li>
+            <li><a href="#">系统管理</a></li>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">通知</a></li>
+            <li><a href="#">帮助</a></li>
+            <li><a href="#">我的账户</a></li>
+            <li class="uu"><a href="#">|</a></li>
+            <li><a href="#">退出</a></li>
+          </ul>
+        </div>
+        /.navbar-collapse
+      </div>
+      /.container-fluid
+    </nav>
+  </div> -->
+  <!-- 主体部分 -->
+  <div class="container-fluid main">
+    <div class="container">
+      <!-- 第一个row -->
+      <row class="row1">
+        <div class="col-md-7 chart_1 index" id="chart_1">
+          <div class="index_header1">
+            <p>裂缝计实时数据</p>
+          </div>
+          <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+          <div id="main" style="width: 700px;height:400px;"></div>
+        </div>
+        <div class="col-md-4 chart_2 index">
+          <div class="index_header1">
+            <p>设备布点图</p>
+            <div class="p1">
+              <img src="images/cheng.jpg" alt="" class="img-responsive center-block">
+            </div>
+          </div>
+        </div>
+      </row>
+    </div> <!--第一个container结束-->
+    
+    <div class="container"> 
+      <!-- 第二个row -->
+      <row>
+        <!-- 轮播 -->
+          <div class="container col-md-12 lunbo">
+            <div class="index_header1">
+                <p>设备施工图</p>
+            </div>
+            <!-- 轮播主体 -->
+            <div id="marquee1" class="marquee">
+              <div style="width:8000px;height: 400px;">
+                <ul id="marquee1_1">
+                  <li>
+                    <a class="pic" ><img width="264" height="196" src="images/000.jpg"></a>
+                    <!-- <div class="txt"><a href="http://sc.chinaz.com/">01</a></div> -->
+                  </li>
+                  <li>
+                    <a class="pic" ><img width="264" height="196" src="images/111.jpg"></a>
+                    <!-- <div class="txt"><a href="http://sc.chinaz.com/">02</a></div> -->
+                  </li>
+                  <li>
+                    <a class="pic" ><img width="264" height="196" src="images/02.jpg" style="margin-top:-2px;"></a>
+                    <!-- <div class="txt"><a href="http://sc.chinaz.com/">03</a></div> -->
+                  </li>
+                  <li>
+                    <a class="pic" ><img width="264" height="196" src="images/20127251705451556.jpg"></a>
+                    <!-- <div class="txt"><a href="http://sc.chinaz.com/">04</a></div> -->
+                  </li>
+                </ul>
+                <ul id="marquee1_2"></ul>
+              </div>
+            </div>  
+          </div>
+          <!-- 轮播结束 -->
+        </row>
+    </div><!-- 第二个container结束 -->
+  </div>
+  <script>
+
+  // 折线图渲染
+  
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: ''
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['裂缝计1','裂缝计2','裂缝计3','裂缝计4','裂缝计5','裂缝计6','裂缝计7','裂缝计8','裂缝计9','裂缝计10'],
+            bottom:'0%',
+            left:'10%'
+        },
+        grid: {
+            top:'15%',
+            left: '5%',
+            right: '3%',
+            bottom: '20%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['4日','8日','12日','16日','20日','24日','28日']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name:'裂缝计1',
+                type:'line',
+                stack: '总量',
+                data:[120, 132, 101, 134, 90, 230, 210]
+            },
+            {
+                name:'裂缝计2',
+                type:'line',
+                stack: '总量',
+                data:[220, 182, 191, 234, 290, 330, 310]
+            },
+            {
+                name:'裂缝计3',
+                type:'line',
+                stack: '总量',
+                data:[150, 232, 201, 154, 190, 330, 410]
+            },
+            {
+                name:'裂缝计4',
+                type:'line',
+                stack: '总量',
+                data:[320, 332, 301, 334, 390, 330, 320]
+            },
+            {
+                name:'裂缝计5',
+                type:'line',
+                stack: '总量',
+                data:[820, 932, 901, 934, 1290, 1330, 1320]
+            },{
+                name:'裂缝计6',
+                type:'line',
+                stack: '总量',
+                data:[120, 132, 101, 134, 90, 230, 210]
+            },
+            {
+                name:'裂缝计7',
+                type:'line',
+                stack: '总量',
+                data:[220, 182, 191, 234, 290, 330, 310]
+            },
+            {
+                name:'裂缝计8',
+                type:'line',
+                stack: '总量',
+                data:[150, 232, 201, 154, 190, 330, 410]
+            },
+            {
+                name:'裂缝计9',
+                type:'line',
+                stack: '总量',
+                data:[320, 332, 301, 334, 390, 330, 320]
+            },
+            {
+                name:'裂缝计10',
+                type:'line',
+                stack: '总量',
+                data:[820, 932, 901, 934, 1290, 1330, 1320]
+            }
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+  // 轮播图
+
+    function marquee(i, direction){
+
+      var obj = document.getElementById("marquee" + i);
+      //console.log(obj);
+      var obj1 = document.getElementById("marquee" + i + "_1");
+      var obj2 = document.getElementById("marquee" + i + "_2");
+      // offsetWidth:内容+边框+内边距
+      // scrollLeft:元素未滚动时,srollLeft的值为0,如果元素被水平滚动了,scrollLeft的值大于0,且表示元素左侧不可见内容的像素宽度
+      
+      // a+=b:a=a+b;(a加b的值赋给a) a-=b:a=a-b;(a减b的值赋给a)
+     
+      
+      // 如果obj2的宽度小于了obj左侧的看不见的宽度了,则obj左侧看不见的宽度减去obj1的宽度,赋值给obj左侧看不见的宽度
+      if (obj2.offsetWidth - obj.scrollLeft <= 0){
+        obj.scrollLeft -= obj1.offsetWidth;
+      }else{//反之,如果obj2的宽度并没有小于obj左侧的看不见的宽度时,则obj左侧看不见的宽度自身持续加1就好
+        obj.scrollLeft++;
+      }
+    }
+
+    function marqueeStart(i, direction){
+      var obj = document.getElementById("marquee" + i);
+      console.log(obj)
+      var obj1 = document.getElementById("marquee" + i + "_1");
+      console.log(obj1);
+      var obj2 = document.getElementById("marquee" + i + "_2");
+      console.log(obj2);
+      //把obj1中的innerHTML赋值给obj2,让obj2中有跟ojb1一样的元素
+      obj2.innerHTML = obj1.innerHTML;
+      console.log(obj2.innerHTML);
+
+      //使用全局变量marqueeVar,创建定时器
+      var marqueeVar = setInterval("marquee("+ i +", '"+ direction +"')", 10);
+      //当鼠标放在obj上时,用clearInterval();函数停止定时器
+      obj.onmouseover = function(){
+        clearInterval(marqueeVar);
+      }
+      //当鼠标离开obj时,重新启动定时器
+      obj.onmouseout = function(){
+        marqueeVar = setInterval("marquee("+ i +", '"+ direction +"')", 10);
+      }
+
+    }
+
+    //调用marqueeStart这个函数,(可是这个函数叫什么函数呢)
+    marqueeStart(1,"left");
+  </script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+</body>
+</html>

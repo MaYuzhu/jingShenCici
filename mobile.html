@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>手机端监测</title>
+    <link rel="stylesheet" href="./css/bootstrap.css"/>
+    <link rel="stylesheet" href="./less/base.css"/>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="js/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        body {
+            background: #f9f9f9;
+        }
+    </style>
+    <script src="./js/echarts.js"></script>
+</head>
+<body>
+<!-- logo -->
+<div class="container-fluid header">
+    <div class="container">
+        <div class="row">
+            <img src="images/980.png" alt="">
+            <span>生态环境修复数据监测平台</span>
+        </div>
+    </div>
+</div>
+<!-- 主体部分 -->
+<div class="container-fluid main_m">
+    <div class="container">
+        <row>
+            <ol class="breadcrumb container-fluid">
+                <li><a href="#">京张高铁八达岭隧道出口岩质路堑边坡</a></li>
+            </ol>
+        </row>
+        <row>
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img style="width:100px;height: 100px;" class="media-object" src="./images/04.jpg" alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <!-- <p>设备名称：</p> -->
+                    <!-- <p>设备别名：</p> -->
+                    <!-- <p>开始时间：2018-6-14</p> -->
+                    <!-- <p>土壤含水率：20%</p> -->
+                </div>
+            </div>
+        </row>
+        <!-- <row>
+          <ol class="breadcrumb container-fluid">
+            <li><a href="#">天气预报</a></li>
+          </ol>
+        </row>
+        <row>
+          <div class="weather">
+            <div class="img_01"><img class="img_01_i" src="./images/02.jpg" alt=""></div>
+            <div class="img_02"><img class="img_02_i" src="./images/01.jpg" alt=""></div>
+          </div>
+        </row> -->
+        <row>
+            <div><img class="img_03_i" src="./images/05.jpg" alt=""></div>
+            <div><img class="img_03_i" src="./images/06 2.jpg" alt=""></div>
+            <div><img class="img_03_i" src="./images/07 2.jpg" alt=""></div>
+            <div><img class="img_03_i" src="./images/08.jpg" alt=""></div>
+        </row>
+         <row>
+            <ol class="breadcrumb container-fluid han_W ">
+                <li><a href="#">土壤含水率</a></li>
+            </ol>
+        </row>
+        <row>
+            <!-- <div class="img_03">
+              <img class="img_03_i" src="./images/03.jpg" alt="">
+            </div> -->
+            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+            <div id="main" style="width: 330px;height:200px;border:0 solid #dddcdc;margin-bottom:20px;"></div>
+        </row>
+    </div>
+</div>
+<script type="text/javascript">
+    //时间戳获取时间
+    function getDate(datetime, year, month, date, hour, minute, second) {
+        datetime = datetime.replace(/-/g, '/');
+        var now = new Date(datetime);
+        console.log(now);
+
+
+        var year = now.getFullYear() + year;
+        var month = now.getMonth() + month;
+        var date = now.getDate() + date;
+
+        var hour = now.getHours() + hour;
+        var minute = now.getMinutes() + minute;
+        var second = now.getSeconds() + second;
+
+        var date = new Date(year, month, date, hour, minute, second);
+        return getNowFormatDate(date);
+    }
+
+    function getNowFormatDate(datetime) {
+        var date;
+        if (datetime == 0) {
+            date = new Date();
+        } else {
+            date = new Date(datetime);
+        }
+
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var Hours = date.getHours()
+        var Minutes = date.getMinutes()
+        var Seconds = date.getSeconds()
+
+        if (Hours >= 0 && Hours <= 9) {
+            Hours = "0" + Hours;
+        }
+        if (Minutes >= 0 && Minutes <= 9) {
+            Minutes = "0" + Minutes;
+        }
+        if (Seconds >= 0 && Seconds <= 9) {
+            Seconds = "0" + Seconds;
+        }
+
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+            + " " + Hours + seperator2 + Minutes
+            + seperator2 + Seconds;
+        return currentdate;
+    }
+    // 起始时间
+    var startTime = getDate(getNowFormatDate(0), 0, 0, -11, 0, 0, 0);
+    // 结束时间（当前时间）
+    var endtime = getNowFormatDate(0);
+    //基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    //图表的标注
+    var chart_text = {};
+    chart_text.textStyle_color = "#334051";
+    chart_text.textStyle_fontWeight = "normal";
+    chart_text.textStyle_fontSize = "12";
+    // 显示标题，图例和空的坐标轴
+    myChart.setOption({
+        title: {
+             // text: '土壤含水率',
+             textStyle:{
+              color:chart_text.textStyle_color,
+              fontWeight:chart_text.textStyle_fontWeight,
+              fontSize:chart_text.textStyle_fontSize
+             }
+        },
+        tooltip: {
+		      trigger: 'axis',
+			    axisPointer: {
+				    // type: 'cross',
+				    label: {
+					    backgroundColor: 'green'
+				    }
+			    }
+		    },
+        toolbox:{
+          feature:{
+            saveAsImage:{
+              type:"png",
+              name:"含水量数据_"+getNowFormatDate(0),
+              title:"下载"
+            }
+          }
+        },
+        legend: {
+            data: ['含水率'],
+            bottom:'5px'
+        },
+        grid:{
+          top:'20%',
+          left:'12%',
+          right:'6%',
+          bottom:'13%',
+          bontainLabel:true
+        },
+        xAxis: {
+            data: []
+        },
+        yAxis: [{
+          type:'value',
+          name:'单位:%'
+        }],
+        series: [{
+            name: '含水率',
+            type: 'line',
+            data: []
+        }]
+    });
+
+    myChart.showLoading();    //数据加载完之前先显示一段简单的loading动画
+
+    var names = [];    //用来盛放X轴坐标值
+    var nums = [];    //用来盛放Y坐标值
+
+    $.ajax({
+        type: "post",
+        async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "http://36.110.66.214:50001/zzcismp/user/login.shtml?username=admin&password=123456",    //请求发送到TestServlet处
+        data: {},
+        dataType: "json",        //返回数据形式为json
+        success: function (result) {
+            //请求成功时执行该函数内容，result即为服务器返回的json对象
+            if (result) {
+                console.log(result);
+            }
+        },
+        error: function (errorMsg) {
+            //请求失败时执行该函数
+            alert("请求数据失败!");
+        }
+    })
+
+    $.ajax({
+        type: "post",
+        async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "http://36.110.66.214:50001/zzcismp/tsd/getBuildDevsData.shtml?buildcode=3506K001&starttime=" + startTime + "&endtime=" + endtime + "&timetype=hour",    //请求发送到TestServlet处
+        data: {},
+        dataType: "json",        //返回数据形式为json
+        success: function (result) {
+            //请求成功时执行该函数内容，result即为服务器返回的json对象
+            if (result) {
+                $(".media-body").append("<p>设备名称：" + result[0].devname + "</p>");
+                $(".media-body").append("<p>设备别名：" + result[0].devalias + "</p>");
+                // $(".media-body").append("<p>开始时间：" + result[0].data[0].time + "</p>");
+                $(".media-body").append("<p>开始时间：2018-06-14</p>");
+                $(".media-body").append("<p>当前状态：监测对象各项指标正常。</p>");
+                $(".media-body").append("<p>设备状态：设备运行正常。</p>");
+
+                for (var i = 0; i < result.length; i++) {
+                    var rdata = result[i].data;
+                    for (var n = 0; n < rdata.length; n++) {
+                        //挨个取出类别并填入类别数组
+                        names.push(rdata[n].time);
+                        //挨个取出销量并填入销量数组
+                        nums.push(rdata[n].data.rh);
+                    }
+                }
+                myChart.hideLoading();    //隐藏加载动画
+                myChart.setOption({        //加载数据图表
+                    xAxis: {
+                        data: names
+                    },
+                    series: [{
+                        // 根据名字对应到相应的系列
+                        name: '含水率(%)',
+                        data: nums
+                    }]
+                });
+
+            }
+        },
+        error: function (errorMsg) {
+            //请求失败时执行该函数
+            alert("图表请求数据失败!");
+            myChart.hideLoading();
+        }
+    })
+</script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+a:focus {
+  outline: none;
+}
+.header {
+  /*background: url(../images/header.png) repeat-x;*/
+  background: #fff;
+  height: 49px;
+  color: #bebebe;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.header img {
+  margin-top: -7px;
+  margin-left: 14px;
+  width:40px;
+  height: 40px;
+  margin-right: 2px;
+}
+.header span{
+  font-size:20px;
+  /*color:#f3f3f3;*/
+  color:#444;
+  line-height: 47px;
+}
+.header ul {
+  height: 49px;
+  line-height: 49px;
+}
+.header ul li {
+  list-style: none;
+  float: left;
+  margin-left: 20px;
+}
+.navbar {
+  border-left: 0;
+  border-right: 0;
+  background: 0;
+}
+.main {
+  background-color: #e6eaed;
+  border-top: 2px solid #43aea8;
+}
+.main .index {
+  background-color: #fff;
+  min-height: 830px;
+  margin-top: 6px;
+  margin-bottom: 15px;
+}
+.main .index .index_header1 {
+  height: 38px;
+  border-bottom: 1px solid #dfe5ea;
+}
+.main .index .index_header1 p {
+  height: 38px;
+  line-height: 38px;
+  font-size: 16px;
+  padding-left: 10px;
+  margin: 0;
+}
+.main .index .index_header2 {
+  height: 42px;
+  line-height: 42px;
+  font-size: 14px;
+}
+.main .index .index_header2 .dropdown {
+  float: left;
+}
+.main .index .index_header2 .jk {
+  float: left;
+  font-size: 14px;
+  margin-right: 5px;
+}
+.main .index .index_header2 .time_div {
+  float: left;
+  overflow: hidden;
+  margin-left: 5px;
+  margin-top: 9px;
+}
+.main .index .index_header2 .time_div .start_ {
+  float: left;
+}
+.main .index .index_header2 .time_div .end_ {
+  float: left;
+  margin-left: 5px;
+}
+.main .index .index_header2 .time_div .button_01 {
+  background: url(../images/icon.png) no-repeat -32px -581px;
+  width: 41px;
+  height: 25px;
+  float: left;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.main .index .index_header2 .time_div #start_time {
+  float: left;
+  width: 155px;
+  height: 25px;
+  border: 1px solid #e6eaed;
+  box-sizing: border-box;
+  outline: none;
+  padding-left: 5px;
+}
+.main .index .index_header2 .time_div #end_time {
+  float: left;
+  width: 155px;
+  height: 25px;
+  border: 1px solid #e6eaed;
+  box-sizing: border-box;
+  outline: none;
+  padding-left: 5px;
+}
+.main .index .index_header2 .time_div p {
+  float: left;
+  font-size: 14px;
+  width: 65px;
+  height: 25px;
+  line-height: 25px;
+  padding-left: 5px;
+  box-sizing: border-box;
+  background-color: #e6eaed;
+  -webkit-border-radius-topleft: 1px;
+  -moz-border-radius-topleftleft: 1px;
+}
+.main .index .index_header2 ul {
+  margin-top: 8px;
+  margin-right: 0;
+}
+.main .index .index_header2 ul a {
+  padding: 3px 5px;
+}
+.main .index .index_header2 ul .map_ {
+  border: 1px solid #e6eaed;
+  border-radius: 4px;
+  padding: 2px 10px;
+}
+.main .index .index_header2 ul .map_:hover {
+  color: #fff;
+  background-color: #43aea8;
+}
+.main .index .index_header2 ul .last_data:hover,
+.main .index .index_header2 ul .import_data:hover {
+  background: 0;
+}
+.main .index .index_header2 .che {
+  margin-top: -2px;
+}
+.main .index .index_header2 .new_fence {
+  background: url(../images/icon.png) no-repeat -27px -503px;
+  padding-left: 24px;
+  padding-right: 3px;
+  float: right;
+}
+.main .index .index_header2 .button_02 {
+  background: url(../images/icon.png) no-repeat -32px -581px;
+  width: 41px;
+  height: 25px;
+  float: left;
+  margin-left: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.main .index .index_header2 .new_goal {
+  background: url(../images/icon.png) no-repeat -27px -496px;
+  padding-left: 24px;
+  padding-right: 3px;
+  float: right;
+}
+.main .index .index_header2 .map_01 {
+  border: 1px solid #e6eaed;
+  border-radius: 4px;
+  padding: 2px 10px;
+  margin-left: 10px;
+}
+.main .index .index_header2 .map_01:hover {
+  color: #fff;
+  background-color: #43aea8;
+}
+.main_m .media .media-body p {
+  margin: 0;
+  font-size: 12px;
+}
+.main_m ol {
+  font-size: 13px;
+}
+.weather {
+  overflow: hidden;
+}
+.weather .img_01 {
+  float: left;
+}
+.weather .img_01 .img_01_i {
+  width: 100px;
+}
+.weather .img_02 {
+  float: left;
+  margin-left: 13px;
+}
+.weather .img_02 .img_02_i {
+  width: 220px;
+}
+.img_03_i {
+  width: 331px;
+  padding:3px 0;
+  height:192px;
+}
+.media{
+  margin-bottom: 5px;
+}
+/*.han_W{
+  margin-bottom: -40px;
+}*/
+#main{
+  margin-top:7px;
+}

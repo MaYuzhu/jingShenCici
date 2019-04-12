@@ -1,0 +1,484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head lang="zh-CN">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>监控</title>
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/style.css">
+
+  <!-- 引入jquery.min.js -->
+  <script type="text/javascript" src="js/jquery.1.4.2-min.js"></script>
+
+
+  <!-- 引入 echarts.js -->
+  <script src="./js/echarts.js"></script>
+
+  <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body style="background-color: #e6eaed">
+  <!-- logo -->
+  <div class="container-fluid header lf">
+    <div class="container">
+      <div class="row">
+        <img src="images/980.png" alt="">
+        <span>京沈铁路边坡安全监测</span>
+      </div>
+    </div>
+  </div>
+  <!-- nav -->
+  <!-- <div class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        Brand and toggle get grouped for better mobile display
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+          <a class="navbar-brand" href="#">Brand</a>
+        </div>
+  
+        Collect the nav links, forms, and other content for toggling
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+  
+            <li><a href="#">首页</a></li>
+            <li><a href="#">运行监控</a></li>
+            <li class="active"><a href="#">数据管理 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">服务管理</a></li>
+            <li><a href="#">配置管理</a></li>
+            <li><a href="#">系统管理</a></li>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">通知</a></li>
+            <li><a href="#">帮助</a></li>
+            <li><a href="#">我的账户</a></li>
+            <li class="uu"><a href="#">|</a></li>
+            <li><a href="#">退出</a></li>
+          </ul>
+        </div>
+        /.navbar-collapse
+      </div>
+      /.container-fluid
+    </nav>
+  </div> -->
+  <!-- 主体部分 -->
+  <div class="container-fluid main">
+    <div class="container">
+      <!-- 第一个row -->
+      <row>
+        <div class="col-md-7 chart_1 index" id="chart_1">
+          <div class="index_header1" style="border: 0;">
+            <p>裂缝计实时数据</p>
+          </div>
+          <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+          <div id="main" style="width: 320px;height:280px;margin-right: 5px;"></div>
+        </div>
+        <div class="col-md-4 chart_2 index" >
+          <div class="index_header1" style="border:0;">
+            <p>设备布点图</p>
+            <div class="p1">
+              <img src="images/cheng.png" alt="" class="img-responsive center-block">
+            </div>
+          </div>
+        </div>
+      </row>
+    </div> <!--第一个container结束-->
+    
+    <div class="container"> 
+      <!-- 第二个row -->
+      <row>
+        <!-- 轮播 -->
+          <div class="container col-md-12 lunbo">
+            <div class="index_header1" style="border:0;">
+                <p>设备施工图</p>
+            </div>
+            <!-- 轮播主体 -->
+            <div id="marquee1" class="marquee">
+              <div style="width:8000px;height: 400px;">
+                <ul id="marquee1_1">
+                  <li>
+                    <a class="pic" ><img width="264" height="196" src="images/_01.jpg"></a>
+                  </li>
+                  <li>
+                    <a class="pic" ><img width="264" height="196" src="images/_02.jpg"></a>
+                  </li>
+                  <li>
+                    <a class="pic" ><img width="264" height="196" src="images/_04.jpg" style="margin-top:-2px;"></a>
+                  </li>
+                  <li>
+                    <a class="pic" ><img width="264" height="196" src="images/_05.jpg"></a>
+                  </li>
+                  <li>
+                    <a class="pic" ><img width="264" height="196" src="images/_06.jpg"></a>
+                  </li>
+                  <li>
+                    <a class="pic" ><img width="264" height="196" src="images/_07.jpg"></a>
+                  </li>
+                  <li>
+                    <a class="pic" ><img width="264" height="196" src="images/_08.jpg" style="margin-top:-2px;"></a>
+                  </li>
+                  <li>
+                    <a class="pic" ><img width="264" height="196" src="images/_09.jpg"></a>
+                  </li>
+                  <li>
+                    <a class="pic" ><img width="264" height="196" src="images/_10.jpg"></a>
+                  </li>
+                </ul>
+                <ul id="marquee1_2"></ul>
+              </div>
+            </div>  
+          </div>
+          <!-- 轮播结束 -->
+        </row>
+    </div><!-- 第二个container结束 -->
+  </div>
+
+  <script>
+  // 折线图渲染
+    //时间戳获取时间
+    function getDate(datetime, year, month, date, hour, minute, second) {
+        datetime = datetime.replace(/-/g, '/');
+        var now = new Date(datetime);
+        // console.log(now);
+
+
+        var year = now.getFullYear() + year;
+        var month = now.getMonth() + month;
+        var date = now.getDate() + date;
+
+        var hour = now.getHours() + hour;
+        var minute = now.getMinutes() + minute;
+        var second = now.getSeconds() + second;
+
+        var date = new Date(year, month, date, hour, minute, second);
+        return getNowFormatDate(date);
+    }
+
+    function getNowFormatDate(datetime) {
+        var date;
+        if (datetime == 0) {
+            date = new Date();
+        } else {
+            date = new Date(datetime);
+        }
+
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var Hours = date.getHours()
+        var Minutes = date.getMinutes()
+        var Seconds = date.getSeconds()
+
+        if (Hours >= 0 && Hours <= 9) {
+            Hours = "0" + Hours;
+        }
+        if (Minutes >= 0 && Minutes <= 9) {
+            Minutes = "0" + Minutes;
+        }
+        if (Seconds >= 0 && Seconds <= 9) {
+            Seconds = "0" + Seconds;
+        }
+
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+            + " " + Hours + seperator2 + Minutes
+            + seperator2 + Seconds;
+        return currentdate;
+    }
+    // 起始时间
+    var startTime = getDate(getNowFormatDate(0), 0, 0, -2, 0, 0, 0);
+    // 结束时间（当前时间）
+    var endtime = getNowFormatDate(0);
+  
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    var myChart=echarts.init(document.getElementById('main'));
+        // var dataX=["2018-8-2","2018-8-4","2018-8-6","2018-8-8","2018-8-10","2018-8-12","2018-8-14","2018-8-16","2018-8-18","2018-8-20","2018-2-6","2018-2-4"],
+        //   dataY1=[52.3, 70.0, 82.5, 62.0, 87.3, 94.3, 43.2, 72.1,20.1,34.0,46.2,24.3],
+        //   dataY2=[17.5, 26.0, 34.5, 59.2, 32.0, 43.1, 14.2, 18.9,80,15.0,12.4,8.9];
+    //显示图表数据
+    myChart.setOption({
+      title:{
+      },
+      // 图表
+      grid:{
+        bottom: 35,
+        top:80
+      },
+      // 小控件
+      toolbox:{
+        show:true,
+        top:-5,
+        right:0,
+        feature:{
+          
+          saveAsImage:{},
+    
+          restore: {},
+        }
+      },
+      tooltip:{
+        trigger: 'axis'
+      },
+      // 下方时间滚动条
+      /*dataZoom: [
+            {
+              type:'slider',
+                show: true,
+                realtime: true,
+                start: 0,
+                end: 50
+            },
+            {
+                type: 'inside',
+                show: true,
+                realtime: true,
+                start: 0,
+                end: 50
+            }
+        ],*/
+        // 图例
+        legend:
+      {
+        data:['含水率','位移'],
+        itemGap:30,
+        itemWidth:70,
+        itemHeight:12,
+        top:50
+      }, 
+      xAxis:
+      {
+        data: []
+      },
+      yAxis:[
+      {
+        name:'含水率(%)',
+        nameTextStyle:{
+          color:'#666666',
+          fontWeight:'bolder',
+          fontSize:12
+        },
+        axisLabel:{
+          color:'#333333',
+          fontSize:14
+        }
+      },
+      {
+        name:'位移(mm)',
+        nameTextStyle:{
+          color:'#666666',
+          fontWeight:'blod',
+          fontSize:12
+        }
+      }
+      ],
+      series:[
+      {
+        name: '含水率',
+        type: 'line',
+        data: dataY1,
+        yAxisIndex: 0,
+        symbol:'circle',
+        symbolSize:9,
+        //拐点标志样式
+        itemStyle: {
+          normal: {
+                  color:'#FF5100',  
+                  lineStyle:{color:'#FF5100',width:'3'},
+                  areaStyle:{type:'default'}
+              }
+        },
+        //渐变橙白
+        areaStyle:{
+          normal: { 
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ 
+                        offset: 0, 
+                        color: 'rgba(255,213,193,0.3)' 
+                    }, { 
+                        offset: 0.8, 
+                        color: 'rgba(255,255,255,0.2)' 
+                    }]) 
+                }
+        }
+      },
+      {
+        name: '位移',
+        type: 'line',
+        data: dataY2,
+        yAxisIndex: 1,
+        symbol:'circle',
+        symbolSize:9,
+        //拐点标志样式
+        itemStyle: {
+          normal: {
+                  color:'#2B9BF8',  
+                  lineStyle:{color:'#2B9BF8',width:'3'},
+                  areaStyle:{type:'default'}
+              }
+        },
+        //渐变蓝白
+        areaStyle:{
+          normal: { 
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ 
+                        offset: 0, 
+                        color: 'rgba(189,221,248,1)' 
+                    }, { 
+                        offset: 0.8, 
+                        color: 'rgba(255,255,255,0.2)' 
+                    }]) 
+                }
+        }
+      }]
+    });
+
+    //请求数据
+    var dataX = [];//用来盛放X轴坐标值
+    var dataY1 = [];//用来盛放Y轴的含水率
+    var dataY2 = [];//用来盛放Y轴的位移
+    //登录
+    $.ajax({
+        type: "post",
+        async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "http://36.110.66.218:8091/zzcismp/user/login.shtml?username=admin&password=123456",    //请求发送到TestServlet处
+        data: {},
+        dataType: "json",        //返回数据形式为json
+        success: function (result) {
+            //请求成功时执行该函数内容，result即为服务器返回的json对象
+            if (result) {
+                // console.log(result);
+            }
+        },
+        error: function (errorMsg) {
+            //请求失败时执行该函数
+            alert("请求数据失败!");
+        }
+    })
+    //数据
+    $.ajax({
+        type: "post",
+        async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "http://36.110.66.218:8091/zzcismp/tsd/getBuildDevsData.shtml?buildcode=1308F0001&starttime=" + startTime + "&endtime=" + endtime + "&timetype=hour",    //请求发送到TestServlet处
+        // url:"http://36.110.66.218:8091/zzcismp/tsd/getBuildDevsData.shtml?buildcode=1308F0001&starttime=2018-09-11%2000:00:00&endtime=2018-09-13%2000:00:00&timetype=minute",
+        data: {},
+        dataType: "json",        //返回数据形式为json
+        success: function (result) {
+            //请求成功时执行该函数内容，result即为服务器返回的json对象
+            var chatData = [];
+            if (result) {
+                console.log(result);
+                for (var i = 0; i < result.length; i++) {
+                    var rdata = result[i].data;
+                    console.log(rdata);
+                    for (var i = 0; i < result.length; i++) {
+                      var deviceData = result[i].data;
+                      var chatDeviceData = [];
+                      for (var m = 0; m < deviceData.length; m++) {
+                        var pointData = deviceData[m].data;
+                        if (typeof(pointData.rh) != 'undefined') {
+                          chatDeviceData.push(pointData.rh);
+                        }
+                        if (typeof(pointData.l) != 'undefined') {
+                          chatDeviceData.push(pointData.l);
+                        }
+                        // console.log(chatDeviceData);
+                      }
+                      chatData.push({name: result[i].devname,type:'line', data: chatDeviceData});
+                      //console.log(chatData);
+                      if (i == 0){
+                        for (var n = 0; n < deviceData.length; n++) {
+                          dataX.push(deviceData[n].time);
+                          console.log(dataX);
+                        }
+                      }
+                    }
+                }
+                myChart.hideLoading();    //隐藏加载动画
+                myChart.setOption({        //加载数据图表
+                    xAxis: {
+                        data: dataX
+                    },
+                    series: chatData
+                });
+
+            }
+        },
+        error: function (errorMsg) {
+            //请求失败时执行该函数
+            alert("图表请求数据失败!");
+            myChart.hideLoading();
+        }
+    });
+  // 轮播图
+
+    function marquee(i, direction){
+
+      var obj = document.getElementById("marquee" + i);
+      //console.log(obj);
+      var obj1 = document.getElementById("marquee" + i + "_1");
+      var obj2 = document.getElementById("marquee" + i + "_2");
+      // offsetWidth:内容+边框+内边距
+      // scrollLeft:元素未滚动时,srollLeft的值为0,如果元素被水平滚动了,scrollLeft的值大于0,且表示元素左侧不可见内容的像素宽度
+      
+      // a+=b:a=a+b;(a加b的值赋给a) a-=b:a=a-b;(a减b的值赋给a)
+     
+      
+      // 如果obj2的宽度小于了obj左侧的看不见的宽度了,则obj左侧看不见的宽度减去obj1的宽度,赋值给obj左侧看不见的宽度
+      if (obj2.offsetWidth - obj.scrollLeft <= 0){
+        obj.scrollLeft -= obj1.offsetWidth;
+      }else{//反之,如果obj2的宽度并没有小于obj左侧的看不见的宽度时,则obj左侧看不见的宽度自身持续加1就好
+        obj.scrollLeft++;
+      }
+    }
+
+    function marqueeStart(i, direction){
+      var obj = document.getElementById("marquee" + i);
+      // console.log(obj)
+      var obj1 = document.getElementById("marquee" + i + "_1");
+      // console.log(obj1);
+      var obj2 = document.getElementById("marquee" + i + "_2");
+      // console.log(obj2);
+      //把obj1中的innerHTML赋值给obj2,让obj2中有跟ojb1一样的元素
+      obj2.innerHTML = obj1.innerHTML;
+      //console.log(obj2.innerHTML);
+
+      //使用全局变量marqueeVar,创建定时器
+      var marqueeVar = setInterval("marquee("+ i +", '"+ direction +"')", 10);
+      //当鼠标放在obj上时,用clearInterval();函数停止定时器
+      obj.onmouseover = function(){
+        clearInterval(marqueeVar);
+      }
+      //当鼠标离开obj时,重新启动定时器
+      obj.onmouseout = function(){
+        marqueeVar = setInterval("marquee("+ i +", '"+ direction +"')", 10);
+      }
+
+    }
+
+    //调用marqueeStart这个函数,(可是这个函数叫什么函数呢)
+    marqueeStart(1,"left");
+  </script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+</body>
+</html>

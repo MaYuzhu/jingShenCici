@@ -1,0 +1,103 @@
+@charset "UTF-8";
+
+/*@media (max-width: 600px) {
+  .facet_sidebar {
+    display: none;
+  }
+}
+@media screen and (min-width:600px) {
+
+}*/
+@media screen and (max-width:767px) {
+  /*监测数据管理页面*/
+      .shijian,.jingdu,.weidu,.haiba,.speed{
+        display:none;
+      }
+      .main .index .index_header2 .dropdown{
+        float:none;
+      }
+      .main .index .index_header2 .jk{
+        margin-left: 6px;
+      }
+      .main .index .index_header2 .time_div .end_{
+        float:none;
+        height: 35px;
+        margin-left: 0;
+      }
+      .main .index .index_header2 .time_div .button_01{
+        margin-left: 170px;
+        margin-top:-34px;
+      }
+      .table{margin-top:144px;}
+      .main .index .index_header2 ul,.main .index .index_header2 ul>li{
+        float: left;
+      }
+      .main .index .index_header2 .navbar-nav{
+        margin:0;
+      }
+      .main .index .index_header2 .weilan_bar{
+        margin-top:12px;
+        margin-left:-64px;
+      }
+      #bs-example-navbar-collapse-1 .uu{display: none;}
+    /*监控目标页面*/
+      .dianhua_n1,.data_n1,.location_n1,.state_n1{
+        display:none;
+      }
+      .goal_n1{margin-top:0;}
+    /*电子围栏页面*/
+      .end_n2,.xuhao_n2,.type,.tai{
+        display: none;
+      }
+      .main .index .index_header2 .button_02{
+        float:none;
+        margin-left:173px;
+        margin-top: -33px;
+      }
+      .main .index .weilan_table{
+        margin-top:6px;
+      }
+    .main .index .index_header2 ul,.main .index .map_header2{
+      /*height:179px;*/
+
+    }
+    /*布点图移动页面*/
+    .main #chart_1{
+      width:355px;
+      /*height:422px;*/
+      height: 336px;
+      margin:5px auto;
+
+    }
+    .main .chart_2{
+      width:355px;
+      height: 219px;
+      margin:0 auto;
+      margin-bottom:5px;
+    }
+    #marquee1{
+      width:298px;
+    }
+    .lunbo{
+      width:355px;
+    }
+    .main .index_header1 p{
+      line-height: 64px;
+    }
+}
+/*2018.9.27 mayuzhu*/
+#history{
+    position: relative;
+}
+.login_box .f1 .prompt,.login_box .f2 .prompt{
+    font-size: 14px;
+    color: red;
+    text-align: left;
+    transform: translate(0,-16px);
+}
+.login_box .f2 .pass{
+    transform: translate(0,6px);
+}
+.weilan_table tbody,.weilan_table thead th{
+    text-align: center;
+}

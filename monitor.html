@@ -1,0 +1,811 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">-->
+<!DOCTYPE html>
+<html>
+
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>监控</title>
+    <link rel="stylesheet" href="./css/bootstrap.css"/>
+    <link rel="stylesheet" href="./css/base.css"/>
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- 引入jquery.min.js -->
+    <script type="text/javascript" src="js/jquery.1.4.2-min.js"></script>
+
+
+    <!-- 引入 echarts.js -->
+    <script src="./js/echarts.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body style="background-color: #e6eaed">
+<!-- logo -->
+<div class="container-fluid header lf">
+    <div class="container">
+        <div class="row">
+            <img src="images/980.png" alt="">
+            <span>京沈铁路边坡安全监测</span>
+        </div>
+    </div>
+</div>
+
+<!-- 主体部分 -->
+<div class="container-fluid main">
+    <div class="container">
+        <!-- 第一个row -->
+        <row>
+            <div class="col-md-7 chart_1 index" id="chart_1">
+                <div class="index_header1" style="border: 0;">
+                    <p>位移实时数据</p>
+                </div>
+                <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                <div id="main_1" style="width: 320px;height:280px;"></div>
+            </div>
+
+            <div class="col-md-7 chart_1 index" id="chart_1_1">
+                <div class="index_header1" style="border: 0;">
+					<p>土壤含水率实时数据</p>
+                </div>
+                <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                <div id="main_2" style="width: 320px;height:280px;"></div>
+            </div>
+
+            <div class="col-md-4 chart_2 index">
+                <div class="index_header1" style="border:0;">
+                    <p>设备布点图</p>
+                    <div class="p1">
+                        <!--<img src="./images/cheng.png" alt="" class="img-responsive center-block">-->
+                        <img src="http://localhost:63342/railway/images/cheng.png?_ijt=17ouer20sp1b3v0grkqpgduim8" alt="" class="img-responsive center-block">
+                    </div>
+                </div>
+            </div>
+        </row>
+    </div> <!--第一个container结束-->
+
+    <!-- <div class="container">
+        
+        <row>
+            
+            <div class="container col-md-12 lunbo">
+                <div class="index_header1" style="border:0;">
+                    <p>设备施工图</p>
+                </div>
+                
+                <div id="marquee1" class="marquee">
+                    <div style="width:8000px;height: 400px;">
+                        <ul id="marquee1_1">
+                            <li>
+                                <a class="pic"><img width="264" height="196" src="images/_01.jpg"></a>
+                            </li>
+                            <li>
+                                <a class="pic"><img width="264" height="196" src="images/_02.jpg"></a>
+                            </li>
+                            <li>
+                                <a class="pic"><img width="264" height="196" src="images/_04.jpg"></a>
+                            </li>
+                            <li>
+                                <a class="pic"><img width="264" height="196" src="images/_05.jpg"></a>
+                            </li>
+                            <li>
+                                <a class="pic"><img width="264" height="196" src="images/_06.jpg"></a>
+                            </li>
+                            <li>
+                                <a class="pic"><img width="264" height="196" src="images/_07.jpg"></a>
+                            </li>
+                            <li>
+                                <a class="pic"><img width="264" height="196" src="images/_08.jpg"></a>
+                            </li>
+                            <li>
+                                <a class="pic"><img width="264" height="196" src="images/_09.jpg"></a>
+                            </li>
+                            <li>
+                                <a class="pic"><img width="264" height="196" src="images/_10.jpg"></a>
+                            </li>
+                        </ul>
+                        <ul id="marquee1_2"></ul>
+                    </div>
+                </div>
+            </div>
+            
+        </row>
+    </div> -->
+
+    <div class="container-fluid">
+    <div class="container">
+      <row>
+        
+        <div class="col-md-12 index history" id="history">
+          <div class="index_header2 map_header2">
+            <span class="jk">选择设备</span>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  T1
+                <span class="caret"></span>
+              </button>
+              <ul id="select1" class="dropdown-menu che" aria-labelledby="dropdownMenu1">
+                <li><a href="javascript:;">T1</a></li>
+                <li><a href="javascript:;">T2</a></li>
+                <li><a href="javascript:;">T3</a></li>
+                <li><a href="javascript:;">T4</a></li>
+                <li><a href="javascript:;">T5</a></li>
+                <li><a href="javascript:;">T6</a></li>
+                <li><a href="javascript:;">T7</a></li>
+                <li><a href="javascript:;">T8</a></li>
+                <li><a href="javascript:;">T9</a></li>
+                <li><a href="javascript:;">L1</a></li>
+                <li><a href="javascript:;">L2</a></li>
+                <li><a href="javascript:;">L3</a></li>
+                <li><a href="javascript:;">L4</a></li>
+              </ul>
+            </div>
+            <div class="time_div">
+              <div class="start_">
+                <p>请选择日期</p>
+                <!--<div class="start_time"></div>-->
+                <input type="text" class="sang_Calender1" id="end_time" />
+              </div>
+              <!--<div class="end_">
+                <p>到</p>
+                &lt;!&ndash;<div class="end_time"></div>&ndash;&gt;
+                <input type="text" class="sang_Calender" id="end_time" placeholder="" />
+              </div>-->
+              <div class="button_01"></div>
+            </div>
+            <div>
+              <table class="table table-striped weilan_table">
+                <thead>
+                  <tr>
+                    <th>编号</th>
+                    <th>真实值</th>
+                    <th class="start_n2">时间</th>   
+                </tr>
+                </thead>
+                <tbody>
+                  <!--<tr>
+                    <td>2</td>
+                    <td>45.6</td>
+                    <td class="goal_n2">40.3</td>
+                    <td class="start_n2"></td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>48.9</td>
+                    <td class="goal_n2">45.4</td>
+                    <td class="start_n2"></td>
+                  </tr>
+                  <tr>
+                    <td>4 </td>
+                    <td>23.4</td>
+                    <td class="goal_n2">22.9</td>
+                    <td class="start_n2"></td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>34.5</td>
+                    <td class="goal_n2">33.9</td>
+                    <td class="start_n2"></td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>36.7</td>
+                    <td class="goal_n2">38.2</td>
+                    <td class="start_n2"></td>
+                  </tr>
+                  <tr>
+                    <td>7 </td>
+                    <td>26.8</td>
+                    <td class="goal_n2">28.1</td>
+                    <td class="start_n2"></td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td>45.3</td>
+                    <td class="goal_n2">45.2</td>
+                    <td class="start_n2"></td>
+                  </tr>
+                  <tr>
+                    <td>9</td>
+                    <td>28.5</td>
+                    <td class="goal_n2">28.6</td>
+                    <td class="start_n2"></td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td>3.456</td>
+                    <td class="goal_n2">3.298</td>
+                    <td class="start_n2"></td>
+                  </tr>
+                  <tr>
+                    <td>11</td>
+                    <td>2.111</td>
+                    <td class="goal_n2">2.818</td>
+                    <td class="start_n2"></td>
+                  </tr>
+                  <tr>
+                    <td>12</td>
+                    <td>3.612</td>
+                    <td class="goal_n2">3.692</td>
+                    <td class="start_n2"></td>
+                  </tr>
+                  <tr>
+                    <td>13</td>
+                    <td>-2.489</td>
+                    <td class="goal_n2">-2.126</td>
+                    <td class="start_n2"></td>
+                  </tr>-->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div id="map" class="index_header3">
+            
+          </div>
+        </div>
+      </row>
+    </div>
+  </div>
+</div>
+
+<script src="./js/layDate-v5.0.9/laydate/laydate.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/monitor.js"></script>
+<script type="text/javascript" src="js/datetime.js"></script>
+<script>
+    //时间戳获取时间
+    function getDate(datetime, year, month, date, hour, minute, second) {
+        datetime = datetime.replace(/-/g, '/');
+        var now = new Date(datetime);
+        var year = now.getFullYear() + year;
+        var month = now.getMonth() + month;
+        var date = now.getDate() + date;
+
+        var hour = now.getHours() + hour;
+        var minute = now.getMinutes() + minute;
+        var second = now.getSeconds() + second;
+
+        var date = new Date(year, month, date, hour, minute, second);
+        return getNowFormatDate(date);
+    }
+
+    function getNowFormatDate(datetime) {
+        var date;
+        if (datetime == 0) {
+            date = new Date();
+        } else {
+            date = new Date(datetime);
+        }
+
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var Hours = date.getHours()
+        var Minutes = date.getMinutes()
+        var Seconds = date.getSeconds()
+
+        if (Hours >= 0 && Hours <= 9) {
+            Hours = "0" + Hours;
+        }
+        if (Minutes >= 0 && Minutes <= 9) {
+            Minutes = "0" + Minutes;
+        }
+        if (Seconds >= 0 && Seconds <= 9) {
+            Seconds = "0" + Seconds;
+        }
+
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+            + " " + Hours + seperator2 + Minutes
+            + seperator2 + Seconds;
+        return currentdate;
+    }
+
+    // 起始时间
+    var startTime = getDate(getNowFormatDate(0), 0, 0, -1, 0, 0, 0);
+    // 结束时间（当前时间）
+    var endtime = getNowFormatDate(0);
+
+    //图表的标注
+    var chart_text = {};
+    chart_text.textStyle_color = "#334051";
+    chart_text.textStyle_fontWeight = "normal";
+    chart_text.textStyle_fontSize = "12";
+
+    //阈值2个
+    var T_para_a, L_para_a
+
+    // 基于准备好的dom，初始化位移echarts实例
+    var shiftChart = echarts.init(document.getElementById('main_1'));
+    //显示标题，图例和空的坐标轴
+    shiftChart.setOption({
+        title: {
+            // text: '位移',
+            textStyle: {
+                color: chart_text.textStyle_color,
+                fontWeight: chart_text.textStyle_fontWeight,
+                fontSize: chart_text.textStyle_fontSize
+            }
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                // type: 'cross',
+                label: {
+                    backgroundColor: 'green'
+                }
+            }
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {
+                    type: "png",
+                    // name:"位移数据_"+getNowFormatDate(0),
+                    title: "下载"
+                },
+                restore: {},
+            }
+        },
+        legend: {
+            data: ['位移'],
+            bottom: '5px'
+        },
+        grid: {
+            top: '20%',
+            left: '12%',
+            right: '6%',
+            bottom: '13%',
+            bontainLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            data: []
+        },
+        yAxis: {
+            type: 'value',
+            name: '位移(mm)',
+            nameTextStyle: {
+                color: '#666666',
+                fontWeight: 'bolder',
+                fontSize: 12
+            },
+			max: 100,
+            axisLabel: {
+                color: '#333333',
+                fontSize: 14
+            }
+        },
+        series: [
+            {
+                name: '位移',
+                type: 'line',
+                yAxisIndex: 0,
+                symbol: 'circle',
+                symbolSize: 9,
+                //拐点标志样式
+                itemStyle: {
+                    normal: {
+                        color: '#FF5100',
+                        lineStyle: {color: '#FF5100', width: '3'},
+                        areaStyle: {type: 'default'}
+                    }
+                },
+                //渐变橙白
+                areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(255,213,193,0.3)'
+                        }, {
+                            offset: 0.8,
+                            color: 'rgba(255,255,255,0.2)'
+                        }])
+                    }
+                },
+
+            }]
+    });
+
+    var waterChart = echarts.init(document.getElementById('main_2'));
+    waterChart.setOption({
+        title: {
+            // text: '土壤含水率',
+            textStyle: {
+                color: chart_text.textStyle_color,
+                fontWeight: chart_text.textStyle_fontWeight,
+                fontSize: chart_text.textStyle_fontSize
+            }
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                // type: 'cross',
+                label: {
+                    backgroundColor: 'green'
+                }
+            }
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {
+                    type: "png",
+                    title: "下载"
+                },
+                restore: {},
+            }
+        },
+        legend: {
+            data: ['含水率'],
+            bottom: '5px'
+        },
+        grid: {
+            top: '20%',
+            left: '12%',
+            right: '6%',
+            bottom: '13%',
+            bontainLabel: true
+        },
+        xAxis: {
+            data: []
+        },
+        yAxis: {
+            name: '含水率(%)',
+            nameTextStyle: {
+                color: '#666666',
+                fontWeight: 'bolder',
+                fontSize: 12
+            },
+            axisLabel: {
+                color: '#333333',
+                fontSize: 14
+            }
+        },
+        series: [
+            {
+                name: '含水率',
+                type: 'line',
+                yAxisIndex: 0,
+                symbol: 'circle',
+                symbolSize: 9,
+                //拐点标志样式
+                itemStyle: {
+                    normal: {
+                        color: '#FF5100',
+                        lineStyle: {color: '#FF5100', width: '3'},
+                        areaStyle: {type: 'default'}
+                    }
+                },
+                //渐变橙白
+                areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(255,213,193,0.3)'
+                        }, {
+                            offset: 0.8,
+                            color: 'rgba(255,255,255,0.2)'
+                        }])
+                    }
+                },
+
+            }]
+    });
+
+    //登录
+    $.ajax({
+        type: "post",
+        async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "http://36.110.66.218:8091/zzcismp/user/login.shtml?username=admin&password=123456",    //请求发送到TestServlet处
+        data: {},
+        dataType: "json",        //返回数据形式为json
+        success: function (result) {
+            //请求成功时执行该函数内容，result即为服务器返回的json对象
+            if (result) {
+                console.log(result);
+            }
+        },
+        error: function (errorMsg) {
+            //请求失败时执行该函数
+            alert("请求数据失败!");
+        }
+    });
+    $.ajax({
+        type: "post",
+        async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "http://36.110.66.218:8091/zzcismp/tsd/getBuildDevsData.shtml?buildcode=1308F0001&starttime=" + startTime + "&endtime=" + endtime + "&timetype=hour",    //请求发送到TestServlet处
+        data: {},
+        dataType: "json",        //返回数据形式为json
+        success: function (result) {
+            //请求成功时执行该函数内容，result即为服务器返回的json对象
+            var shiftChartData = [];
+            var waterChartData = [];
+            var chartTime = [];
+            if (result) {
+                console.info(result);
+
+                for (var i = 0; i < result.length; i++) {
+                    var deviceData = result[i].data;
+                    var shiftChartDeviceData = [];
+                    var waterChartDeviceData = [];
+                    for (var m = 0; m < deviceData.length; m++) {
+                        var pointData = deviceData[m].data;
+
+                        var time = deviceData[m].time
+
+                        if (i == 0) {
+                            chartTime.push(time);
+                        }
+                        if (result[i].type == 'K') {
+                            waterChartDeviceData.push(pointData.rh);
+                        }
+                        if (result[i].type == 'O') {
+                            shiftChartDeviceData.push(pointData.l);
+                        }
+                    }
+                    shiftChartData.push({
+                        name: result[i].devname,
+                        type: 'line',
+                        data: shiftChartDeviceData
+                    });
+                    waterChartData.push({
+                        name: result[i].devname,
+                        type: 'line',
+                        data: waterChartDeviceData
+                    });
+                }
+
+                shiftChart.setOption({
+                    xAxis: {
+                        data: chartTime
+                    },
+                    series: shiftChartData
+                });
+
+                waterChart.setOption({
+                    xAxis: {
+                        data: chartTime
+                    },
+                    series: waterChartData
+                });
+            }
+        },
+        error: function (errorMsg) {
+            //请求失败时执行该函数
+            alert("图表请求数据失败!");
+        }
+    });
+    //位移设备阈值
+    $.ajax({
+        type: "post",
+        async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "http://36.110.66.218:8091/zzcismp/alarm/getAlarmValueByDevcode.shtml",    //请求发送到TestServlet处
+        data: {devcode:'1308F00010010O09'},
+        dataType: "json",        //返回数据形式为json
+        success: function (result) {
+            //请求成功时执行该函数内容，result即为服务器返回的json对象
+            if (result) {
+                L_para_a = result.para_a
+                shiftChart.setOption({
+                    series:{
+                        markLine:{
+                            lineStyle : {
+                                color:'#ba0000',
+                            },
+                            data : [
+                                {
+                                    yAxis: L_para_a,
+                                }
+                            ]
+                        }
+                    }
+                })
+            }
+        },
+        error: function (errorMsg) {
+            //请求失败时执行该函数
+            alert("请求数据失败!");
+        }
+    });
+    //含水率设备阈值
+    $.ajax({
+        type: "post",
+        async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "http://36.110.66.218:8091/zzcismp/alarm/getAlarmValueByDevcode.shtml",    //请求发送到TestServlet处
+        data: {devcode:'1308F00010010K01'},
+        dataType: "json",        //返回数据形式为json
+        success: function (result) {
+            T_para_a = result.para_a
+            if (result) {
+                waterChart.setOption({
+                    series:{
+                        markLine:{
+                            lineStyle : {
+                                color:'#ba0000',
+                            },
+                            data : [
+                                {
+                                    yAxis: T_para_a,
+                                }
+                            ]
+                        }
+                    }
+                })
+            }
+        },
+        error: function (errorMsg) {
+            //请求失败时执行该函数
+            alert("请求数据失败!");
+        }
+    });
+    //最下边表格
+    laydate.render({
+        elem: '#end_time'
+    });
+
+
+
+    function getDevcode(n) {
+        var val
+        switch(n)
+        {
+            case 'T1':
+                val = "1308F00010010K01"
+                break;
+            case 'T2':
+                val = "1308F00010010K02"
+                break;
+            case 'T3':
+                val = "1308F00010010K03"
+                break;
+            case 'T4':
+                val =  "1308F00010010K04"
+                break;
+            case 'T5':
+                val =  "1308F00010010K05"
+                break;
+            case 'T6':
+                val =  "1308F00010010K06"
+                break;
+            case 'T7':
+                val =  "1308F00010010K07"
+                break;
+            case 'T8':
+                val =  "1308F00010010K08"
+                break;
+            case 'T9':
+                val =  "1308F00010010K09"
+                break;
+            case 'L1':
+                val =  "1308F00010010O09"
+                break;
+            case 'L2':
+                val =  "1308F00010010O10"
+                break;
+            case 'L3':
+                val =  "1308F00010010O11"
+                break;
+            case 'L4':
+                val =  "1308F00010010O12"
+                break;
+            default:
+
+        }
+        return val
+    }
+
+    $('.button_01').on('click',function () {
+        var type_text = $('#dropdownMenu1').text().trim()
+        var devcode = getDevcode(type_text)
+        var start_time = $('#end_time').val() + ' 00:00:00'
+        var end_time = $('#end_time').val() + ' 23:59:59'
+
+        if(devcode.substr(13,1) == 'K'){
+
+        }else {
+
+        }
+
+        $.ajax({
+            type: "post",
+            async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            //url: "http://36.110.66.218:8091/zzcismp/tsd/getDevData.shtml?devcode=1308F00010010O10&starttime=2018-09-01%2000:00:00&endtime=2018-10-01%2000:00:00&timetype=hour",
+            url:'http://36.110.66.218:8091/zzcismp/tsd/getDevData.shtml',
+            data: {
+                //devcode:'1308F00010010O10',
+                devcode:devcode,
+                starttime:start_time,
+                endtime: end_time,
+                timetype:'hour'
+            },
+            dataType: "json",
+            success: function (result) {
+                $('.weilan_table tbody').html('')
+                console.log(result)
+                if (result) {
+                    for(var i=0;i<result.data.length;i++){
+                        $('.weilan_table tbody').append(`<tr>
+                    <td>${i+1}</td>
+                    <td class="goal_n2">${devcode.substr(13,1) == 'K'?result.data[i].data.rh:result.data[i].data.l}</td>
+                    <td class="start_n2">${result.data[i].time}</td>
+                    </tr>`)
+                    }
+
+                    var h_height = $('.weilan_table').height() + 100 + 'px'
+                    $('#history').css('height', h_height)
+                }
+
+            },
+            error: function (errorMsg) {
+                //请求失败时执行该函数
+                alert("请求数据失败!");
+            }
+        });
+
+    })
+
+
+    // 轮播图
+    /*function marquee(i, direction) {
+        var obj = document.getElementById("marquee" + i);
+        //console.log(obj);
+        var obj1 = document.getElementById("marquee" + i + "_1");
+        var obj2 = document.getElementById("marquee" + i + "_2");
+        // offsetWidth:内容+边框+内边距
+        // scrollLeft:元素未滚动时,srollLeft的值为0,如果元素被水平滚动了,scrollLeft的值大于0,且表示元素左侧不可见内容的像素宽度
+
+        // a+=b:a=a+b;(a加b的值赋给a) a-=b:a=a-b;(a减b的值赋给a)
+
+
+        // 如果obj2的宽度小于了obj左侧的看不见的宽度了,则obj左侧看不见的宽度减去obj1的宽度,赋值给obj左侧看不见的宽度
+        if (obj2.offsetWidth - obj.scrollLeft <= 0) {
+            obj.scrollLeft -= obj1.offsetWidth;
+        } else {//反之,如果obj2的宽度并没有小于obj左侧的看不见的宽度时,则obj左侧看不见的宽度自身持续加1就好
+            obj.scrollLeft++;
+        }
+    }
+
+    function marqueeStart(i, direction) {
+        var obj = document.getElementById("marquee" + i);
+        // console.log(obj)
+        var obj1 = document.getElementById("marquee" + i + "_1");
+        // console.log(obj1);
+        var obj2 = document.getElementById("marquee" + i + "_2");
+        // console.log(obj2);
+        //把obj1中的innerHTML赋值给obj2,让obj2中有跟ojb1一样的元素
+
+        obj2.innerHTML = obj1.innerHTML;报错注释掉
+        //console.log(obj2.innerHTML);
+
+
+        //使用全局变量marqueeVar,创建定时器
+        var marqueeVar = setInterval("marquee(" + i + ", '" + direction + "')", 10);
+        //当鼠标放在obj上时,用clearInterval();函数停止定时器
+        obj.onmouseover = function () {
+            clearInterval(marqueeVar);
+        }
+        //当鼠标离开obj时,重新启动定时器
+        obj.onmouseout = function () {
+            marqueeVar = setInterval("marquee(" + i + ", '" + direction + "')", 10);
+        }
+
+    }
+
+    //调用marqueeStart这个函数,(可是这个函数叫什么函数呢)
+    marqueeStart(1, "left");*/
+</script>
+
+</body>
+</html>
