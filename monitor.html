@@ -1,6 +1,6 @@
-<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">-->
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">
+
 <html>
 
 <head lang="zh-CN">
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./css/style.css">
 
     <!-- 引入jquery.min.js -->
-    <script type="text/javascript" src="js/jquery.1.4.2-min.js"></script>
+    <!--<script type="text/javascript" src="./js/jquery.1.4.2-min.js"></script>-->
 
 
     <!-- 引入 echarts.js -->
@@ -255,11 +255,12 @@
 </div>
 
 <script src="./js/layDate-v5.0.9/laydate/laydate.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/monitor.js"></script>
-<script type="text/javascript" src="js/datetime.js"></script>
-<script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.cookie.js"></script>
+<script src="./js/bootstrap.js"></script>
+<script src="./js/monitor.js"></script>
+<script type="text/javascript" src="./js/datetime.js"></script>
+<script type="text/javascript">
     //时间戳获取时间
     function getDate(datetime, year, month, date, hour, minute, second) {
         datetime = datetime.replace(/-/g, '/');
@@ -503,9 +504,11 @@
 
             }]
     });
-
+    if($.cookie('password') == null){
+        location.href="login.html";
+    }
     //登录
-    $.ajax({
+    /*$.ajax({
         type: "post",
         async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
         url: "http://36.110.66.218:8091/zzcismp/user/login.shtml?username=admin&password=123456",    //请求发送到TestServlet处
@@ -515,13 +518,14 @@
             //请求成功时执行该函数内容，result即为服务器返回的json对象
             if (result) {
                 console.log(result);
+
             }
         },
         error: function (errorMsg) {
             //请求失败时执行该函数
             alert("请求数据失败!");
         }
-    });
+    });*/
     $.ajax({
         type: "post",
         async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
@@ -806,6 +810,6 @@
     //调用marqueeStart这个函数,(可是这个函数叫什么函数呢)
     marqueeStart(1, "left");*/
 </script>
-
 </body>
+
 </html>
